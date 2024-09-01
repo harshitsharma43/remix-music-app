@@ -3,7 +3,7 @@ import { json, LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
 export const loader: LoaderFunction = async () => {
-  const response = await fetch("http://musixplayer.eu-north-1.elasticbeanstalk.com/allSongs");
+  const response = await fetch("http://musixplayer.eu-north-1.elasticbeanstalk.com/getSong/66ce3279ae4e34acbcc10da8");
   if (!response.ok) {
     throw new Response("Failed to fetch data", { status: response.status });
   }
@@ -99,7 +99,7 @@ function MusicPage() {
     <h1 style={headingStyle}>{users['data'][0].songName}</h1>
         </div>
   {/* Circular Play/Pause Button */}
-  <div className='flex flex-col items-center justify-center h-screen space-y-4 h-32'>
+  <div className='flex flex-col items-center justify-center h-screen space-y-2 h-32'>
   <audio
       ref={audioRef}
       src={users['data'][0].song}
