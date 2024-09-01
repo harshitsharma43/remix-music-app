@@ -88,7 +88,7 @@ function MusicPage() {
   return (
     
     <div className='space gap-y-20'>
-        <div className=' flex justify-center items-center  lg:h-[30rem] lg:w-[60rem] h-[30rem]'>
+        <div className='flex justify-center items-center  lg:h-[30rem] lg:w-[60rem] h-[30rem]'>
       <img
             src={users['data'][0].albumArt}
             alt="Album Cover"
@@ -99,7 +99,7 @@ function MusicPage() {
     <h1 style={headingStyle}>{users['data'][0].songName}</h1>
         </div>
   {/* Circular Play/Pause Button */}
-  <div className='flex flex-col items-center justify-center h-screen space-y-2 h-32'>
+  <div className='flex flex-col items-center justify-center h-screen space-y-2 h-28'>
   <audio
       ref={audioRef}
       src={users['data'][0].song}
