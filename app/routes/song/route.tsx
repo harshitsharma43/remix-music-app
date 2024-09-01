@@ -99,7 +99,7 @@ function MusicPage() {
     <h1 style={headingStyle}>{users['data'][0].songName}</h1>
         </div>
   {/* Circular Play/Pause Button */}
-  <div className='flex flex-col items-center justify-center h-screen space-y-2 h-36'>
+  <div className='flex flex-col items-center justify-center h-screen space-y-2 h-32'>
   <audio
       ref={audioRef}
       src={users['data'][0].song}
