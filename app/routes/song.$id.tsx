@@ -1,14 +1,19 @@
 import React, { useRef, useState } from 'react'
 import { json, LoaderFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData,Link } from "@remix-run/react";
+import { useParams } from "react-router-dom";
 
-export const loader: LoaderFunction = async () => {
-  const response = await fetch("http://musixplayer.eu-north-1.elasticbeanstalk.com/getSong/66ce3279ae4e34acbcc10da8");
+// Loader function to fetch a specific song's details by id
+export const loader: LoaderFunction = async ({params}  ) => {
+  
+  console.log("----parmas----",params)
+  console.log("----ID----",params.id)
+  const response = await fetch(`http://musixplayer.eu-north-1.elasticbeanstalk.com/getSong/${params.id}`);
   if (!response.ok) {
     throw new Response("Failed to fetch data", { status: response.status });
   }
   const users = await response.json();
-  console.log("----apiData---",users)
+  console.log("----users inside song details app",users)
   return json(users);
 };
 
@@ -21,6 +26,8 @@ function MusicPage() {
     const audioRef = useRef<any>(null);
 
     const users:any = useLoaderData();
+
+  const params = useParams();
 
 
     
@@ -88,6 +95,7 @@ function MusicPage() {
   return (
     
     <div className='space gap-y-20'>
+       <Link className='py-10' to={`/song/allSongs`}> Back to All Song List</Link>
         <div className='flex justify-center items-center  lg:h-[30rem] lg:w-[60rem] h-[30rem]'>
       <img
             src={users['data'][0].albumArt}

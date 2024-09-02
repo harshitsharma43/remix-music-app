@@ -1,48 +1,22 @@
-import type { MetaFunction } from "@remix-run/node";
+import { Link } from '@remix-run/react'
+import React from 'react'
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
-};
-
-export default function Index() {
-  return (
-    <div className="font-sans p-4">
-      <h1 className="text-3xl">Welcome to Remix</h1>
-      <ul className="list-disc mt-4 pl-6 space-y-2">
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/quickstart"
-            rel="noreferrer"
-          >
-            5m Quick Start
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/tutorial"
-            rel="noreferrer"
-          >
-            30m Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/docs"
-            rel="noreferrer"
-          >
-            Remix Docs
-          </a>
-        </li>
-      </ul>
-    </div>
-  );
+let styleForName:any={
+    'position':'absolute', 'bottom':10, 'right':10
 }
+
+const _index = () => {
+  return (
+    <div className='bg-blue-300 h-screen flex flex-col justify-center justify-items-center h-screen text-center space-y-4'>
+        <div className='border border bg-green-500 py-7'>Welcome to my Music Play List</div>
+      
+      <div className='border border bg-red-500 py-7'> <Link to={`song/allSongs`}>Go to song List</Link></div>
+      <div style={styleForName}><div>Developed By:</div> Ankit Das and Harshit Sharma</div>
+    </div>
+    
+     
+    
+  )
+}
+
+export default _index
