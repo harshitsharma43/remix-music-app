@@ -4,7 +4,7 @@ export default {
   content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      display: ["Satisfy", "cursive"],
+      display: ["Poppins", "san-serif"],
     },
     extend: {
       keyframes:{

@@ -16,7 +16,7 @@ export const loader: LoaderFunction = async () => {
 const index = () => {
   const albums:any = useLoaderData();
   return (
-    <div className='bg-gradient-to-t from-black to-gray-500 gap-x-7 h-screen'>
+    <div className='bg-gradient-to-t from-black to-gray-500 gap-x-7 min-h-screen'>
       <Link className='font-display text-white gap-x-7 px-2 py-5'to={`/`}>Go to Home Page</Link>
       <div className='grid grid-cols-2 gap-4 p-4 '> {albums.data.map((album:any) => (
        <Link to={`/song/${album._id}`} key={album._id}>
