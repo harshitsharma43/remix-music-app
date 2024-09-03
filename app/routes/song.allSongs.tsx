@@ -16,18 +16,19 @@ export const loader: LoaderFunction = async () => {
 const index = () => {
   const albums:any = useLoaderData();
   return (
-    <div className='gap-x-7'>
-      <Link className='gap-x-7'to={`/`}>Go to Home Page</Link>
-     {albums.data.map((album:any) => (
+    <div className='bg-gradient-to-t from-black to-gray-500 gap-x-7 h-screen'>
+      <Link className='font-display text-white gap-x-7 px-2 py-5'to={`/`}>Go to Home Page</Link>
+      <div className='grid grid-cols-2 gap-4 p-4 '> {albums.data.map((album:any) => (
        <Link to={`/song/${album._id}`} key={album._id}>
-        <div key={album._id} className="album bg-white rounded-lg shadow-lg overflow-hidden">
+        <div key={album._id} className="text-center bg-gradient-to-t from-black to-gray-500 album font-display text-white rounded-lg shadow-lg overflow-hidden">
           <img src={album.albumArt} alt={album.songName} className="w-full h-48 object-cover" />
           <div className="album-info p-4">
             <h3 className="bg to-blue-500 text-lg font-semibold">{album.songName}</h3>
           </div>
         </div>
         </Link>
-      ))}
+      ))}</div>
+    
      
     </div>
   )

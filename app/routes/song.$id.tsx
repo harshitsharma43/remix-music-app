@@ -94,17 +94,17 @@ function MusicPage() {
 
   return (
     
-    <div className='space gap-y-20'>
-       <Link className='py-10' to={`/song/allSongs`}> Back to All Song List</Link>
+    <div className='bg-gradient-to-t from-black to-gray-500 gap-y-10 h-screen'>
+       <Link className='px-7 py-10 font-display text-white' to={`/song/allSongs`}> Back to All Song List</Link>
         <div className='flex justify-center items-center  lg:h-[30rem] lg:w-[60rem] h-[30rem]'>
       <img
             src={users['data'][0].albumArt}
             alt="Album Cover"
-            className='h-72 w-64'
+            className='h-72 w-64 rounded-xl'
           />
     </div>
-    <div><style>{keyframesStyle}</style>
-    <h1 style={headingStyle}>{users['data'][0].songName}</h1>
+    <div className='animate-marquee inline-block font-display text-white'>
+    <h1>{users['data'][0].songName}</h1>
         </div>
   {/* Circular Play/Pause Button */}
   <div className='flex flex-col items-center justify-center space-y-4 h-40'>
@@ -124,17 +124,17 @@ function MusicPage() {
     
   <button
         onClick={handlePlayPause}
-        className="flex items-center justify-center w-16 h-16 bg-red-500 rounded-full shadow-md focus:outline-none"
+        className="flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-md focus:outline-none"
       >
         {isPlaying ? (
           <div className="flex space-x-1">
-            <div className="w-2 h-4 bg-white"></div>
-            <div className="w-2 h-4 bg-white"></div>
+            <div className="w-2 h-4 bg-black"></div>
+            <div className="w-2 h-4 bg-black"></div>
           </div>
         ) : (
           <div
-            className="w-0 h-0 border-l-8 border-transparent border-r-0 
-            border-t-4 border-b-4 border-t-transparent border-b-transparent border-l-white"
+            className="w-2 h-3 border-l-8 border-transparent border-r-0 
+            border-t-4 border-b-4 border-t-transparent border-b-transparent border-l-black"
           ></div>
         )}
       </button>
