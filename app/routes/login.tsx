@@ -7,7 +7,7 @@ import {toast} from "sonner"
 import { Form } from "@remix-run/react";
 import { useActionData } from "@remix-run/react";
 import { useEffect } from "react";
-import MusicImage from "./../assets/download.jpeg"
+
 
 export const action = async ({ request }: { request: Request }) => {
     const formData = await request.formData();
