@@ -17,7 +17,7 @@ const index = () => {
   const albums:any = useLoaderData();
   return (
     <div className='bg-gradient-to-t from-black to-gray-500 gap-x-7 min-h-screen'>
-      <Link className='font-display text-white gap-x-7 px-2 py-5'to={`/`}>Go to Home Page</Link>
+      <Link className='font-display text-white gap-x-7 px-2 py-5'to={`/home`}>Go to Home Page</Link>
       <div className='grid grid-cols-2 gap-4 p-4 '> {albums.data.map((album:any) => (
        <Link to={`/song/${album._id}`} key={album._id}>
         <div key={album._id} className="text-center bg-gradient-to-t from-black to-gray-500 album font-display text-white rounded-lg shadow-lg overflow-hidden">

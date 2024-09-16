@@ -7,6 +7,11 @@ import {
 } from "@remix-run/react";
 import "./tailwind.css";
 
+import Login from "./routes/login"; 
+import { redirect } from "@remix-run/react";
+import { Toaster } from "sonner";
+
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -25,6 +30,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+
 export default function App() {
-  return <Outlet />;
+  return(  <>
+    <Toaster position="top-right" />
+    <Outlet />;
+  </>) 
 }
