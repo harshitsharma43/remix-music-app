@@ -18,7 +18,7 @@ export const action = async ({ request }: { request: Request }) => {
     console.log("-----password----",password)
   
     // Call your Node.js API for authentication
-    const response = await fetch("http://localhost:8080/logIn", {
+    const response = await fetch("http://musixplayer.eu-north-1.elasticbeanstalk.com/logIn", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
