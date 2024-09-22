@@ -3,12 +3,28 @@ import { json, LoaderFunction } from "@remix-run/node";
 import { useLoaderData,Link } from "@remix-run/react";
 import { useParams } from "react-router-dom";
 
-// Loader function to fetch a specific song's details by id
-export const loader: LoaderFunction = async ({params}  ) => {
+import {redirect,useFetcher} from "@remix-run/react"
+import {getSession} from "../CookiesStorage"
+
+
+export const loader:LoaderFunction = async ({ request, params}: { request: Request,params:any }) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  const token = session.get("token");
+  
+
+  if (!token) {
+    return redirect("/login"); // If no token, redirect to login
+  }
+//   else{
+//     return null;
+//   }
+// }
+
+//export const loader2: LoaderFunction = async ({params}  ) => {
   
   console.log("----parmas----",params)
   console.log("----ID----",params.id)
-  const response = await fetch(`http://musixplayer.eu-north-1.elasticbeanstalk.com/getSong/${params.id}`);
+  const response = await fetch(`http://musixplayer.eu-north-1.elasticbeanstalk.com/getSong/${params.id}`,{ headers:{token:token}});
   if (!response.ok) {
     throw new Response("Failed to fetch data", { status: response.status });
   }
@@ -16,6 +32,7 @@ export const loader: LoaderFunction = async ({params}  ) => {
   console.log("----users inside song details app",users)
   return json(users);
 };
+
 
 
 

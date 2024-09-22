@@ -8,8 +8,25 @@ import {
 import "./tailwind.css";
 
 import Login from "./routes/login"; 
-import { redirect } from "@remix-run/react";
+
 import { Toaster } from "sonner";
+
+import { LoaderFunction, redirect } from "@remix-run/node";
+import { getSession } from "./CookiesStorage";
+
+// This loader checks for authentication status
+// export const loader: LoaderFunction = async ({ request }) => {
+//   const session = await getSession(request.headers.get("Cookie"));
+//   const token = session.get("token");
+
+//   // If no token, redirect to login page
+//   if (!token) {
+//     return redirect("/login");
+//   }
+
+//   // Otherwise, continue to the protected routes
+//   return null;
+// };
 
 
 export function Layout({ children }: { children: React.ReactNode }) {

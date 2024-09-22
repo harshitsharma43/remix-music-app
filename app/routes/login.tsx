@@ -3,10 +3,12 @@
 import {ActionFunction,ActionFunctionArgs,LoaderFunction,LoaderFunctionArgs} from "@remix-run/node"
 import {redirect,useFetcher,useLoaderData} from "@remix-run/react"
 
+
 import {toast} from "sonner"
 import { Form } from "@remix-run/react";
 import { useActionData } from "@remix-run/react";
 import { useEffect } from "react";
+import { commitSession, getSession } from "../CookiesStorage";
 
 
 export const action = async ({ request }: { request: Request }) => {
@@ -18,18 +20,30 @@ export const action = async ({ request }: { request: Request }) => {
     console.log("-----password----",password)
   
     // Call your Node.js API for authentication
-    const response = await fetch("http://musixplayer.eu-north-1.elasticbeanstalk.com/logIn", {
+    const response:any = await fetch("http://musixplayer.eu-north-1.elasticbeanstalk.com/logIn", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, password }),
     });
-    console.log("response of login api---",)
+    console.log("token of login api---",response.headers.get("x-auth-token"))
+    
+    // const result=await response.json()
+    // console.log("result-----",response)
   
     if (response.status==200) {
-      // On successful authentication, redirect to home page
-      return redirect("/home");
+       
+        
+    const session = await getSession();
+  session.set("token",response.headers.get("x-auth-token") ); // Store user ID or any other user data
+    
+      return redirect("/home",{
+        headers: {
+            "Set-Cookie": await commitSession(session),
+          }
+    });
+      
     } else {
       console.log("user is not authenticated-----------------",response.body);
     

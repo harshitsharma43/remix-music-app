@@ -2,14 +2,29 @@ import React from 'react'
 import { json, LoaderFunction } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { useParams } from "react-router-dom";
+import axios from "axios"
+import {redirect,useFetcher} from "@remix-run/react"
+import {getSession} from "../CookiesStorage"
 
+export const loader = async ({ request }: { request: Request }) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  const token = session.get("token");
+  
 
-export const loader: LoaderFunction = async () => {
-  const response = await fetch("http://musixplayer.eu-north-1.elasticbeanstalk.com/allSongs")
+  if (!token) {
+    return redirect("/login"); // If no token, redirect to login
+  }
+//export const loader: LoaderFunction = async () => {
+  const response = await fetch("http://musixplayer.eu-north-1.elasticbeanstalk.com/allSongs",{
+    headers:{token:token}
+  })
+  
   if (!response.ok) {
     throw new Response("Failed to fetch data", { status: response.status });
   }
   const users = await response.json();
+  
+  
   return json(users);
 };
 
